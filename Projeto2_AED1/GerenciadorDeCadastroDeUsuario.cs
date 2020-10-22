@@ -73,13 +73,71 @@ namespace Projeto2_AED1
             Console.WriteLine("\nDados do cartao de credito que sera utilizado para realizar as compras:\nNome do titular do cartao:");
             var nomeDoTitular = Console.ReadLine();
 
-            Console.WriteLine("\nNumero:");
-            var numero = Console.ReadLine();
+            string numeroDoCartao = "";
+            bool inputDoNumeroDoCartaoEhValido = false;
 
-            Console.WriteLine("\nCodigo de seguranca:");
-            var codigoDeSeguranca = Console.ReadLine();
+            while (!inputDoNumeroDoCartaoEhValido)
+            {
+                Console.WriteLine("\nNumero:");
+                numeroDoCartao = Console.ReadLine();
 
-            return new CartaoDeCredito(nomeDoTitular, numero, codigoDeSeguranca);
+                inputDoNumeroDoCartaoEhValido = ValidaNumeroDoCartaoDeCredito(numeroDoCartao);
+            }
+
+            string codigoDeSeguranca = "";
+            bool inputDoCodigoDeSegurancaEhValido = false;
+
+            while (!inputDoCodigoDeSegurancaEhValido)
+            {
+                Console.WriteLine("\nCodigo de seguranca:");
+                codigoDeSeguranca = Console.ReadLine();
+
+                inputDoCodigoDeSegurancaEhValido = ValidaCodigoDeSegurancaDoCartaoDeCredito(codigoDeSeguranca);
+            }
+
+            return new CartaoDeCredito(nomeDoTitular, numeroDoCartao, codigoDeSeguranca);
+        }
+
+        private static bool ValidaNumeroDoCartaoDeCredito(string numeroDoCartao)
+        {
+            // remove os espacos em branco
+            numeroDoCartao = numeroDoCartao.Replace(" ", String.Empty);
+
+            // checa se o input do numero do cartao eh um numero
+            var inputDoNumeroDoCartaoEhNumero = int.TryParse(numeroDoCartao, out _);
+
+            // valida o input do numero do cartao
+            if (numeroDoCartao.Length == 16 && inputDoNumeroDoCartaoEhNumero)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("\nNumero do cartao invalido! O formato correto do numero do cartao de credito: 0000 0000 0000 0000");
+
+                return false;
+            }
+        }
+
+        private static bool ValidaCodigoDeSegurancaDoCartaoDeCredito(string codigoDeSeguranca)
+        {
+            // remove os espacos em branco
+            codigoDeSeguranca = codigoDeSeguranca.Replace(" ", String.Empty);
+
+            // checa se o input do codigo de seguranca do cartao eh um numero
+            var inputDoCodigoDeSegurancaEhNumero = int.TryParse(codigoDeSeguranca, out _);
+
+            // valida o input do numero do cartao
+            if (codigoDeSeguranca.Length == 3 && inputDoCodigoDeSegurancaEhNumero)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("\nCodigo de seguranca do cartao invalido! O formato correto do codigo de seguranca do cartao de credito: 000");
+
+                return false;
+            }
         }
     }
 }
