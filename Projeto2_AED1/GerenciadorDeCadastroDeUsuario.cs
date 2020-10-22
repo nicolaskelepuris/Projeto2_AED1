@@ -100,13 +100,10 @@ namespace Projeto2_AED1
 
         private static bool ValidaNumeroDoCartaoDeCredito(string numeroDoCartao)
         {
-            // remove os espacos em branco
             numeroDoCartao = numeroDoCartao.Replace(" ", String.Empty);
 
-            // checa se o input do numero do cartao eh um numero
-            var inputDoNumeroDoCartaoEhNumero = int.TryParse(numeroDoCartao, out _);
+            var inputDoNumeroDoCartaoEhNumero = ChecaSeStringEhCompostaPorNumeroInteiro(numeroDoCartao);
 
-            // valida o input do numero do cartao
             if (numeroDoCartao.Length == 16 && inputDoNumeroDoCartaoEhNumero)
             {
                 return true;
@@ -121,13 +118,10 @@ namespace Projeto2_AED1
 
         private static bool ValidaCodigoDeSegurancaDoCartaoDeCredito(string codigoDeSeguranca)
         {
-            // remove os espacos em branco
             codigoDeSeguranca = codigoDeSeguranca.Replace(" ", String.Empty);
 
-            // checa se o input do codigo de seguranca do cartao eh um numero
-            var inputDoCodigoDeSegurancaEhNumero = int.TryParse(codigoDeSeguranca, out _);
+            var inputDoCodigoDeSegurancaEhNumero = ChecaSeStringEhCompostaPorNumeroInteiro(codigoDeSeguranca);
 
-            // valida o input do numero do cartao
             if (codigoDeSeguranca.Length == 3 && inputDoCodigoDeSegurancaEhNumero)
             {
                 return true;
@@ -138,6 +132,11 @@ namespace Projeto2_AED1
 
                 return false;
             }
+        }
+
+        private static bool ChecaSeStringEhCompostaPorNumeroInteiro(string str)
+        {
+            return int.TryParse(str, out _);
         }
     }
 }
