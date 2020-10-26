@@ -136,7 +136,7 @@ namespace Projeto2_AED1
 
         private static bool ChecaSeStringEhCompostaPorNumeroInteiro(string str)
         {
-            return int.TryParse(str, out _);
+            return Int64.TryParse(str, out _);
         }
     }
 }

@@ -11,7 +11,14 @@ namespace Projeto2_AED1
             var usuario = GerenciadorDeCadastroDeUsuario.GetUsuarioPeloConsole();
             GerenciadorDeCadastroDeUsuario.CadastrarUsuario(usuario);
 
-            AtendimentoAoCliente.PrintProdutosDisponiveis();
+            Estoque.PrintProdutosDisponiveis();
+
+            var carrinhoDeCompras = new CarrinhoDeCompras(usuario);
+            AtendimentoAoCliente.GetProdutosQueOUsuarioDesejaComprar(carrinhoDeCompras);
+
+            var opcaoDoCliente = AtendimentoAoCliente.GetOpcaoDoCliente();
+
+            AtendimentoAoCliente.RealizaOpcaoDoCliente(carrinhoDeCompras, opcaoDoCliente);       
         }
     }
 }
